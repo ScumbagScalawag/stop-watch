@@ -34,7 +34,7 @@ int main (){
 
 void selectOption(char& i){
     std::cout << "Select option:" << std::endl;
-    std::cout << "a. Start" << std::endl;
+    std::cout << "s. Start" << std::endl;
     std::cout << "l. Lap" << std::endl;
     std::cout << "e. End" << std::endl;
     

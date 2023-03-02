@@ -28,19 +28,35 @@ public:
     }
     // MY ADDITIONAL FUNCTIONS -----------------------------------------------------------
     void PrintTimeStamp(){
-        std::cout << std::setw(5) << std::setprecision(5) << GetElapsedHours() << " : ";
-        std::cout << std::setw(5) << std::setprecision(5) << GetElapsedMinutes() << " : ";
-        std::cout << std::setw(5) << std::setprecision(5) << GetElapsedTime() << std::endl;
+        std::cout << std::setw(5) << std::setprecision(0) << GetElapsedHours() << " : ";
+        std::cout << std::setw(5) << std::setprecision(0) << GetElapsedMinutes() << " : ";
+        std::cout << std::setw(5) << std::setprecision(5) << GetElapsedSeconds() << std::endl;
     }
-    float GetElapsedMinutes (){
+    float GetElapsedSeconds(){
+        /*
         float fl, fract, interger;
         fl = GetElapsedTime();
         fract = fl - (int)fl;
         interger = fl - fract; 
+        interger /= 60.0;
         return interger;
+        */
+        return GetElapsedTime();
+
+    }
+    float GetElapsedMinutes (){
+        /*
+        float fl, fract, interger;
+        fl = GetElapsedTime();
+        fract = fl - (int)fl;
+        interger = fl - fract; 
+        interger /= 60.0;
+        return interger;
+        */
+        return (int) GetElapsedTime() / 60.0 / 60.0;
     }
     float GetElapsedHours (){
-        return GetElapsedMinutes() / 60.0; 
+        return (int) GetElapsedTime() / 60.0 / 60.0 / 60.0; 
     }
 private:
     std::chrono::system_clock::time_point _start_time, _current_time, _last_delta_tick;
