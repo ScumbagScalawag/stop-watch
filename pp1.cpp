@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "emtptyStack.h"
+#include "emptystack.h"
 #include "runner.h"
 
 template <typename T> class Stack {
@@ -14,28 +14,32 @@ private:
 public:
     Stack();
     ~Stack();
-    bool empty();
+    bool empty() const;
     void push(int d = 0);
-    void pop() throw(emptyStack());
-    const int &show_top() const throw(emptyStack());
-    void print_stack();
-    int size();
+    void pop();
+    const int &show_top() const;
+    void print_stack() const; 
+    int size() const;
     void clear_stack(); /* is this necessary or helpful? */
 };
 
-template <typename T> Stack<T>::Stack() { top = nullptr; }
+template <typename T> 
+Stack<T>::Stack() { top = nullptr; }
 
-template <typename T> Stack<T>::~Stack() {
+template <typename T> 
+Stack<T>::~Stack() {
     while (top != nullptr) {
         pop();
     }
 }
 
-template <typename T> bool Stack<T>::empty() { /* alternative to throw? */
+template <typename T> 
+bool Stack<T>::empty() const { /* alternative to throw? */
     return top == nullptr;
 }
 
-template <typename T> void Stack<T>::push(int d) {
+template <typename T> 
+void Stack<T>::push(int d) {
     Stack *node = new Stack;
     node->data = d;
     node->next = top;
@@ -43,7 +47,7 @@ template <typename T> void Stack<T>::push(int d) {
 }
 
 template <typename T>
-void Stack<T>::pop() throw(emptyStack()) { /* add throw exception!!! */
+void Stack<T>::pop() { 
     if (empty())
         throw emptyStack();
     Stack *node = top;
@@ -52,15 +56,14 @@ void Stack<T>::pop() throw(emptyStack()) { /* add throw exception!!! */
 }
 
 template <typename T>
-const int &Stack<T>::show_top() const
-throw(emptyStack()) { /* add throw exception!!! */
+const int &Stack<T>::show_top() const { 
     if (empty())
         throw emptyStack();
     return top->data;
 }
 
 template <typename T>
-void Stack<T>::print_stack() { /* Don't need throw, empty stack is not a problem
+void Stack<T>::print_stack() const{ /* Don't need throw, empty stack is not a problem
                                   here */
     Stack *ptr;
     if (empty()) {
@@ -74,7 +77,8 @@ void Stack<T>::print_stack() { /* Don't need throw, empty stack is not a problem
     }
 }
 
-template <typename T> int Stack<T>::size() {
+template <typename T> 
+int Stack<T>::size() const {
     int i = 0;
     Stack *ptr;
     for (ptr = top; ptr != nullptr; ptr = ptr->next) {
