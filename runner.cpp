@@ -1,5 +1,3 @@
-#ifndef MY_RUNNER
-#define MY_RUNNER
 #include <string>
 #include <iostream>
 
@@ -14,7 +12,7 @@ std::string Person::getName() const { return name; }
 
 int Person::getAge() const { return age;}
 
-virtual void Person::print(){
+void Person::print(){
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
     std::cout << "\n";
@@ -27,7 +25,7 @@ Runner::Runner(const std::string new_name, const int new_age,
     time(new_time) {}
 int Runner::getTime() const { return time;}
 
-void Runner::print(){
+void Runner::print() const{
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
     std::cout.width(20); std::cout << std::left << getTime();
@@ -59,5 +57,3 @@ void Teacher::print() const {
     std::cout.width(20); std::cout << std::left << subject;
     std::cout << "\n";
 }
-
-#endif
