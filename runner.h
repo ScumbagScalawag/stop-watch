@@ -13,7 +13,7 @@ public:
     Person(const std::string new_name, const int new_age);
     std::string getName() const; 
     int getAge() const; 
-    virtual void print() = 0;
+    virtual void print();
 };
 
 

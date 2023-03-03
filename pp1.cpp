@@ -16,12 +16,11 @@ public:
     Stack();
     ~Stack();
     bool empty() const;
-    void push(int d = 0);
-    void pop();
     const int &show_top() const;
     void print_stack() const; 
     int size() const;
-    void clear_stack(); /* is this necessary or helpful? */
+    void push(T t);
+    void pop();
 };
 
 template <typename T> 
@@ -40,9 +39,9 @@ bool Stack<T>::empty() const { /* alternative to throw? */
 }
 
 template <typename T> 
-void Stack<T>::push(int d) {
+void Stack<T>::push(T t) {
     Stack *node = new Stack;
-    node->data = d;
+    node->data = t;
     node->next = top;
     top = node;
 }
@@ -90,7 +89,7 @@ int Stack<T>::size() const {
 
 int main() {
     Stack<int> stack; // should this be type Stack* or Stack? How does things change?
-    Stack<Runner> rs; 
+    //Stack<Runner*> rs; 
     try {
         std::cout << "Empty? : " << stack.empty() << std::endl;
         stack.push(5);
@@ -104,8 +103,10 @@ int main() {
         std::cout << "The whole stack: ";
         stack.print_stack();
 
-        /* ------- Runner Stack -------- */
-        rs.push();
+        /* ------- Runner Stack -------- 
+        rs.push(new Runner("Noah", 20, 6985));
+        rs.show_top();
+        */
 
     } catch (emptyStack es) {
         std::cout << "ERROR: ";
