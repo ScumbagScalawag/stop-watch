@@ -4,7 +4,8 @@
 #include "emptystack.h"
 #include "runner.h"
 
-template <typename T> class Stack {
+template <typename T> 
+class Stack {
 private:
     T data;
     Stack *next;
@@ -58,7 +59,7 @@ void Stack<T>::pop() {
 template <typename T>
 const int &Stack<T>::show_top() const { 
     if (empty())
-        throw emptyStack();
+        throw emptyStack(); //needs to return an int->needs to throw if empty
     return top->data;
 }
 
@@ -88,20 +89,30 @@ int Stack<T>::size() const {
 }
 
 int main() {
-    Stack<int>
-    stack; // should this be type Stack* or Stack? How does things change?
-    std::cout << "Empty? : " << stack.empty() << std::endl;
-    stack.push(5);
-    std::cout << "Empty? : " << stack.empty() << std::endl;
-    std::cout << "Top: " << stack.show_top() << std::endl;
-    std::cout << "The whole stack: " << std::endl;
-    stack.print_stack();
-    /* need THROW exception(s) for this stuff to work:
-  stack.pop();
-  std::cout << "Top: " << stack.show_top() << std::endl;
-  std::cout << "The whole stack: " << std::endl;
-  stack.print_stack();
-  */
+    Stack<int> stack; // should this be type Stack* or Stack? How does things change?
+    Stack<Runner> rs; 
+    try {
+        std::cout << "Empty? : " << stack.empty() << std::endl;
+        stack.push(5);
+        std::cout << "Empty? : " << stack.empty() << std::endl;
+        std::cout << "Top: " << stack.show_top() << std::endl;
+        std::cout << "The whole stack: " << std::endl;
+        stack.print_stack();
+        //popping the last element 
+        stack.pop(); //stack now empty!
+        //std::cout << "Top: " << stack.show_top() << std::endl; //stack empty!!
+        std::cout << "The whole stack: ";
+        stack.print_stack();
+
+        /* ------- Runner Stack -------- */
+        rs.push();
+
+    } catch (emptyStack es) {
+        std::cout << "ERROR: ";
+        std::cout << es.what() << std::endl;
+        std::cout << "ABORTING PROGRAM" << std::endl;
+        return 1;
+    }
 
     return 0;
 }

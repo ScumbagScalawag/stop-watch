@@ -44,7 +44,7 @@ public:
         return GetElapsedTime();
 
     }
-    float GetElapsedMinutes (){
+    int GetElapsedMinutes (){
         /*
         float fl, fract, interger;
         fl = GetElapsedTime();
@@ -53,10 +53,10 @@ public:
         interger /= 60.0;
         return interger;
         */
-        return (int) GetElapsedTime() / 60.0 / 60.0;
+        return (int) GetElapsedTime() % 60 % 60;
     }
-    float GetElapsedHours (){
-        return (int) GetElapsedTime() / 60.0 / 60.0 / 60.0; 
+    int GetElapsedHours (){
+        return (int) GetElapsedTime() % 60 % 60 % 60; 
     }
 private:
     std::chrono::system_clock::time_point _start_time, _current_time, _last_delta_tick;

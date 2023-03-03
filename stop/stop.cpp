@@ -38,6 +38,8 @@ void selectOption(char& i){
     std::cout << "l. Lap" << std::endl;
     std::cout << "e. End" << std::endl;
     
+
+
     std::cout << "Option: ";
     std::cin >> i;
 

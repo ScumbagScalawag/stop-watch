@@ -31,7 +31,8 @@ public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, 
            const int new_time)  /* const int -> int? this might be updated multiple times in run-time */
-        : time(new_time) {}
+        : Person(new_name, new_age),
+        time(new_time) {}
     int getTime() const { return time;}
     virtual void print() const = 0;
     void print(){
@@ -48,7 +49,8 @@ private:
 public:
     Student(const std::string new_name, const int new_age,
             const std::string new_grade) 
-    : Person(new_name, new_age) {}
+    : Person(new_name, new_age),
+    grade(new_grade){}
         /*Runner(getName() , getAge(), getTime()){
         grade = new_grade;*/
     void print() const {
@@ -60,13 +62,14 @@ public:
 
 };
 
-class Teacher : public Runner{
+class Teacher : public Person{
 private:
     std::string subject;
 public:
-    Teacher(const std::string new_subject, const std::string new_name, const int new_age ) : Runner(getName() , getAge(), getTime()){
-        subject = new_subject;
-    }
+    Teacher(const std::string new_name, const int new_age,
+            const std::string new_subject)
+        : Person(new_name, new_age),
+        subject(new_subject) {}
     void print() const {
         std::cout.width(20); std::cout << std::left << getName();
         std::cout.width(20); std::cout << std::left << getAge();
