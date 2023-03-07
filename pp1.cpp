@@ -99,7 +99,7 @@ int main() {
     bool flag = true;
 
     // Initialize variables for runner
-    std::string runnerName;
+    std::string runnerName , runnerGrade;
     int runnerAge;
     int runnerTime = 0;           // This can be float depending on the value of time
 
@@ -114,12 +114,15 @@ int main() {
             std::cin >> runnerName;
             std::cout << "Enter your age: ";
             std::cin >> runnerAge;
+            std::cout << "Enter your grade: ";
+            std::cin >> runnerGrade;
+
 
             // Start timer, get time
             /* runnerTime = getTime() */
 
             // Create runner object with those details and add to runnerstack
-            runnerstack.push(Runner(runnerName,runnerAge,runnerTime));
+            runnerstack.push(Runner(runnerName,runnerAge,runnerGrade,runnerTime));
 
             // Print all runners
             std::cout << "Printing all runners...\n";
