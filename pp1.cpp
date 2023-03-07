@@ -16,7 +16,7 @@ public:
     Stack();
     ~Stack();
     bool empty() const;
-    const int &show_top() const;
+    const T &show_top() const;        // Return type here should be T
     void print_stack() const; 
     int size() const;
     void push(T t);
@@ -56,7 +56,7 @@ void Stack<T>::pop() {
 }
 
 template <typename T>
-const int &Stack<T>::show_top() const { 
+const T &Stack<T>::show_top() const { // Return type needs to be T
     if (empty())
         throw emptyStack(); //needs to return an int->needs to throw if empty
     return top->data;
@@ -66,14 +66,14 @@ template <typename T>
 void Stack<T>::print_stack() const{ /* Don't need throw, empty stack is not a problem
                                   here */
     Stack *ptr;
+    T tempclass;
     if (empty()) {
         std::cout << "Stack is empty!" << std::endl;
     } else {
         for (ptr = top; ptr != nullptr; ptr = ptr->next) {
-            std::cout << ptr->data << " ";
+            tempclass = ptr->data;                           // Changed print to ONLY work for classes with pre-defined print functions
+            tempclass.print();
         }
-        std::cout << std::endl;
-        std::cout << "^Top" << std::endl;
     }
 }
 
@@ -88,32 +88,68 @@ int Stack<T>::size() const {
 }
 
 int main() {
-    Stack<int> stack; // should this be type Stack* or Stack? How does things change?
-    //Stack<Runner*> rs; 
-    try {
-        std::cout << "Empty? : " << stack.empty() << std::endl;
-        stack.push(5);
-        std::cout << "Empty? : " << stack.empty() << std::endl;
-        std::cout << "Top: " << stack.show_top() << std::endl;
-        std::cout << "The whole stack: " << std::endl;
-        stack.print_stack();
-        //popping the last element 
-        stack.pop(); //stack now empty!
-        //std::cout << "Top: " << stack.show_top() << std::endl; //stack empty!!
-        std::cout << "The whole stack: ";
-        stack.print_stack();
+    //Stack<int> stack; // should this be type Stack* or Stack? How does things change?
 
-        /* ------- Runner Stack -------- 
-        rs.push(new Runner("Noah", 20, 6985));
-        rs.show_top();
-        */
+    // Using just Stack instead of Stack* works
+    Stack<Runner> runnerstack; 
+    std::cout << "Welcome runner! Good luck for your race! Fill in your details and get to running!\n\n";
+    
+    // While loop functionality
+    char ch = 'y';
+    bool flag = true;
 
-    } catch (emptyStack es) {
-        std::cout << "ERROR: ";
-        std::cout << es.what() << std::endl;
-        std::cout << "ABORTING PROGRAM" << std::endl;
-        return 1;
+    // Initialize variables for runner
+    std::string runnerName;
+    int runnerAge;
+    int runnerTime = 0;           // This can be float depending on the value of time
+
+
+    // Temp runner objects needed for print
+    Runner temp;
+
+    while (flag){
+        try {
+            // Ask for runner details
+            std::cout << "Enter your name: ";
+            std::cin >> runnerName;
+            std::cout << "Enter your age: ";
+            std::cin >> runnerAge;
+
+            // Start timer, get time
+            /* runnerTime = getTime() */
+
+            // Create runner object with those details and add to runnerstack
+            runnerstack.push(Runner(runnerName,runnerAge,runnerTime));
+
+            // Print all runners
+            std::cout << "Printing all runners...\n";
+            std::cout << "TOP\n";
+            runnerstack.print_stack();
+            std::cout << "\n";
+
+            // Continue?
+            while (ch == 'y'){
+                std::cout << "Would you like to continue? (y/n): ";
+                std::cin >> ch;
+                if (ch == 'n'){
+                    flag = false;
+                }else if (ch == 'y'){
+                    break;
+                }else{
+                    std::cout << "INVALID OPTION!\n";
+                    ch = 'y';
+                }
+            }
+            
+
+        } catch (emptyStack es) {
+            std::cout << "ERROR: ";
+            std::cout << es.what() << std::endl;
+            std::cout << "ABORTING PROGRAM" << std::endl;
+            return 1;
+        }
     }
 
+    std::cout << "Thank you for participating\n";
     return 0;
 }
