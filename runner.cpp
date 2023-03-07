@@ -1,10 +1,10 @@
-#include <iostream>
 #include <string>
+#include <iostream>
 
 #include "runner.h"
 
-//Person
 // I've added a line on the remote version! How ever will I resolve this?
+
 //Person::Person(){};
 Person::Person(const std::string new_name, const int new_age)
     : name(new_name),
@@ -20,22 +20,6 @@ void Person::print(){
     std::cout << "\n";
 }
 
-//Student
-Student::Student(const std::string new_name, const int new_age,
-                 const std::string new_grade) 
-    : Person(new_name, new_age),
-    grade(new_grade){}
-        /*Runner(getName() , getAge(), getTime()){
-        grade = new_grade;*/
-
-void Student::print() const {
-    std::cout.width(20); std::cout << std::left << getName();
-    std::cout.width(20); std::cout << std::left << getAge();
-    std::cout.width(20); std::cout << std::left << grade;
-    std::cout << "\n";
-}
-
-//Runner
 //Runner::Runner(){};
 Runner::Runner(const std::string new_name, const int new_age, const std::string new_grade,
        const int new_time)  /* const int -> int? this might be updated multiple times in run-time */
@@ -46,11 +30,27 @@ int Runner::getTime() const { return time;}
 void Runner::print() const{
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
+    std::cout.width(20); std::cout << std::left << getGrade();         // Prints grade
     std::cout.width(20); std::cout << std::left << getTime();
     std::cout << "\n";
 }
 
-//Teacher
+Student::Student(const std::string new_name, const int new_age,
+                 const std::string new_grade) 
+    : Person(new_name, new_age),
+    grade(new_grade){}
+        /*Runner(getName() , getAge(), getTime()){
+        grade = new_grade;*/
+
+std::string Student::getGrade() const {return grade;}            // getGrade() needed for print
+
+void Student::print() const {
+    std::cout.width(20); std::cout << std::left << getName();
+    std::cout.width(20); std::cout << std::left << getAge();
+    std::cout.width(20); std::cout << std::left << grade;
+    std::cout << "\n";
+}
+
 Teacher::Teacher(const std::string new_name, const int new_age,
                  const std::string new_subject)
         : Person(new_name, new_age),
