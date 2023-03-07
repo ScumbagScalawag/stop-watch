@@ -20,21 +20,6 @@ void Person::print(){
     std::cout << "\n";
 }
 
-//Runner::Runner(){};
-Runner::Runner(const std::string new_name, const int new_age, const std::string new_grade,
-       const int new_time)  /* const int -> int? this might be updated multiple times in run-time */
-    : Student(new_name, new_age, new_grade),
-    time(new_time) {}
-int Runner::getTime() const { return time;}
-
-void Runner::print() const{
-    std::cout.width(20); std::cout << std::left << getName();
-    std::cout.width(20); std::cout << std::left << getAge();
-    std::cout.width(20); std::cout << std::left << getGrade();         // Prints grade
-    std::cout.width(20); std::cout << std::left << getTime();
-    std::cout << "\n";
-}
-
 Student::Student(const std::string new_name, const int new_age,
                  const std::string new_grade) 
     : Person(new_name, new_age),
@@ -48,6 +33,21 @@ void Student::print() const {
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
     std::cout.width(20); std::cout << std::left << grade;
+    std::cout << "\n";
+}
+
+//Runner::Runner(){};
+Runner::Runner(const std::string new_name, const int new_age, const std::string new_grade,
+       const int new_time)  /* const int -> int? this might be updated multiple times in run-time */
+    : Student(new_name, new_age, new_grade),
+    time(new_time) {}
+int Runner::getTime() const { return time;}
+
+void Runner::print() const{
+    std::cout.width(20); std::cout << std::left << getName();
+    std::cout.width(20); std::cout << std::left << getAge();
+    std::cout.width(20); std::cout << std::left << getGrade();         // Prints grade
+    std::cout.width(20); std::cout << std::left << getTime();
     std::cout << "\n";
 }
 
