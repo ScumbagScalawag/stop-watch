@@ -7,7 +7,7 @@ private:
     std::string name;
     int age;
 public:
-    //Person(){};
+    Person(){};
     Person(const std::string new_name, const int new_age);
     std::string getName() const; 
     int getAge() const; 
@@ -18,10 +18,12 @@ class Student : public Person{
 private:
     std::string grade;
 public:
+    Student(){};
     Student(const std::string new_name, const int new_age,
             const std::string new_grade);
         /*Runner(getName() , getAge(), getTime()){
         grade = new_grade;*/
+    std::string getGrade() const;               // Added getGrade function to Student (needed for print)
     void print() const;
 };
 
@@ -29,7 +31,7 @@ class Runner : public Student{
 private:
     double time;
 public:
-    //Runner(){};
+    Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,
            const int new_time);  /* const int -> int? this might be updated multiple times in run-time */
     int getTime() const;
@@ -41,7 +43,7 @@ class Teacher : public Person{
 private:
     std::string subject;
 public:
-    //Teacher(){};
+    Teacher(){};
     Teacher(const std::string new_name, const int new_age,
             const std::string new_subject);
     void print() const;
