@@ -23,9 +23,6 @@ public:
     void pop();
 };
 
-/* Ok so here's some random text that supposedly I can stage line-by-line
- * the changes.
- * Here is the last line to be included. */
 template <typename T> 
 Stack<T>::Stack() { top = nullptr; }
 
