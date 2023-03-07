@@ -4,6 +4,7 @@
 #include "runner.h"
 
 //Person
+// I've added a line on the remote version! How ever will I resolve this?
 //Person::Person(){};
 Person::Person(const std::string new_name, const int new_age)
     : name(new_name),
