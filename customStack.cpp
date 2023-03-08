@@ -1,16 +1,8 @@
+#include <iostream>
+
 #include "customStack.h"
 #include "emptystack.h"
 
-#include <iostream>
-
-/*
-template <typename T> 
-StackLL<T>::~StackLL() {
-    while (top != NULL) {
-        pop();
-    }
-}
-*/
 
 template <typename T> 
 bool StackLL<T>::empty() const { 
