@@ -1,4 +1,5 @@
 #include "customStack.h"
+#include <exception>
 #include "emptystack.h"
 
 #include <iostream>
