@@ -6,7 +6,7 @@
 /*
 template <typename T> 
 StackLL<T>::~StackLL() {
-    while (top != nullptr) {
+    while (top != NULL) {
         pop();
     }
 }
@@ -14,7 +14,7 @@ StackLL<T>::~StackLL() {
 
 template <typename T> 
 bool StackLL<T>::empty() const { 
-    return top == nullptr;
+    return top == NULL;
 }
 
 template <typename T> 
@@ -50,7 +50,7 @@ void StackLL<T>::print_stack() const{
     if (empty()) {
         std::cout << "Stack is empty!" << std::endl;
     } else {
-        for (ptr = top; ptr != nullptr; ptr = ptr->next) {
+        for (ptr = top; ptr != NULL; ptr = ptr->next) {
             tempclass = ptr->data;                           // Changed print to ONLY work for classes with pre-defined print functions
             tempclass.print();
         }
