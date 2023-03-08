@@ -1,7 +1,7 @@
+#include "runner.h"
+
 #include <string>
 #include <iostream>
-
-#include "runner.h"
 
 //Person::Person(){};
 Person::Person(const std::string new_name, const int new_age)
@@ -32,6 +32,11 @@ void Student::print() const {
     std::cout.width(20); std::cout << std::left << getAge();
     std::cout.width(20); std::cout << std::left << grade;
     std::cout << "\n";
+}
+
+void Student::setGrade(int g){
+    if (g > 100) grade = 100;
+    else grade = g;
 }
 
 //Runner::Runner(){};

@@ -16,20 +16,20 @@ public:
 
 class Student : public Person{
 private:
-    std::string grade;
+    std::string grade; // (optional) maybe make this float towards the end? 
 public:
     Student(){};
     Student(const std::string new_name, const int new_age,
             const std::string new_grade);
-        /*Runner(getName() , getAge(), getTime()){
-        grade = new_grade;*/
-    std::string getGrade() const;               // Added getGrade function to Student (needed for print)
+    std::string getGrade() const;
     void print() const;
+    void setGrade(int g);
 };
 
 class Runner : public Student{
 private:
-    double time;
+    float time;
+    float best_time;
 public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,

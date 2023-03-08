@@ -8,6 +8,7 @@ int main (){
     Timer timer; 
     char input = 'a';
     while (input != 'e'){
+
         selectOption(input);
 
         switch (input){

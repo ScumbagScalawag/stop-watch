@@ -1,91 +1,10 @@
 #include <iostream>
 #include <string>
 
+#include "customStack.h"
 #include "emptystack.h"
 #include "runner.h"
 
-template <typename T> 
-class Stack {
-private:
-    T data;
-    Stack *next;
-    Stack *top;
-    std::string stack_empty;
-
-public:
-    Stack();
-    ~Stack();
-    bool empty() const;
-    const T &show_top() const;        // Return type here should be T
-    void print_stack() const; 
-    int size() const;
-    void push(T t);
-    void pop();
-};
-
-template <typename T> 
-Stack<T>::Stack() { top = nullptr; }
-
-template <typename T> 
-Stack<T>::~Stack() {
-    while (top != nullptr) {
-        pop();
-    }
-}
-
-template <typename T> 
-bool Stack<T>::empty() const { /* alternative to throw? */
-    return top == nullptr;
-}
-
-template <typename T> 
-void Stack<T>::push(T t) {
-    Stack *node = new Stack;
-    node->data = t;
-    node->next = top;
-    top = node;
-}
-
-template <typename T>
-void Stack<T>::pop() { 
-    if (empty())
-        throw emptyStack();
-    Stack *node = top;
-    top = top->next;
-    delete (node);
-}
-
-template <typename T>
-const T &Stack<T>::show_top() const { // Return type needs to be T
-    if (empty())
-        throw emptyStack(); //needs to return an int->needs to throw if empty
-    return top->data;
-}
-
-template <typename T>
-void Stack<T>::print_stack() const{ /* Don't need throw, empty stack is not a problem
-                                  here */
-    Stack *ptr;
-    T tempclass;
-    if (empty()) {
-        std::cout << "Stack is empty!" << std::endl;
-    } else {
-        for (ptr = top; ptr != nullptr; ptr = ptr->next) {
-            tempclass = ptr->data;                           // Changed print to ONLY work for classes with pre-defined print functions
-            tempclass.print();
-        }
-    }
-}
-
-template <typename T> 
-int Stack<T>::size() const {
-    int i = 0;
-    Stack *ptr;
-    for (ptr = top; ptr != nullptr; ptr = ptr->next) {
-        ++i;
-    }
-    return i;
-}
 
 int main() {
     //Stack<int> stack; // should this be type Stack* or Stack? How does things change?
@@ -94,14 +13,14 @@ int main() {
     Stack<Runner> runnerstack; 
     std::cout << "Welcome runner! Good luck for your race! Fill in your details and get to running!\n\n";
     
-    // While loop functionality
+    // While loop functionality (default values)
     char ch = 'y';
     bool flag = true;
 
     // Initialize variables for runner
     std::string runnerName , runnerGrade;
     int runnerAge;
-    int runnerTime = 0;           // This can be float depending on the value of time
+    float runnerTime = 0.0f;           // This can be float depending on the value of time
 
 
     // Temp runner objects needed for print
@@ -145,13 +64,29 @@ int main() {
             }
             
 
-        } catch (emptyStack es) {
+        } catch (emptyStack &es) {
             std::cout << "ERROR: ";
             std::cout << es.what() << std::endl;
             std::cout << "ABORTING PROGRAM" << std::endl;
             return 1;
         }
     }
+    /* Best time( after 3 "laps") gets 5 points extra credit! */
+    /*
+    for (i = (start of runner stack); i != (end); ++i){
+
+        print each students grade
+        if (student.time = best_time)
+            student.setGrade(student.getGrade + 5)
+            print some neat message that points to the winner of the pack 
+
+    
+    }
+
+
+
+    */
+
 
     std::cout << "Thank you for participating\n";
     return 0;
