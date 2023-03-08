@@ -7,10 +7,8 @@
 
 
 int main() {
-    //Stack<int> stack; // should this be type Stack* or Stack? How does things change?
-
-    // Using just Stack instead of Stack* works
-    Stack<Runner> runnerstack; 
+    StackLL<int> istack; 
+    StackLL<Runner> runnerstack; 
     std::cout << "Welcome runner! Good luck for your race! Fill in your details and get to running!\n\n";
     
     // While loop functionality (default values)

@@ -1,5 +1,5 @@
 pp1: pp1.o runner.o emptystack.o
-	g++ -o pp1 pp1.o runner.o emptystack.o 
+	g++ -o pp1 pp1.o runner.o emptystack.o customStack.o
 
 pp1.o: pp1.cpp 
 	g++ -c pp1.cpp
