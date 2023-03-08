@@ -22,7 +22,7 @@ private:
 
 public:
     StackLL()
-    : top(nullptr){};
+    : top(NULL){};
     ~StackLL(){
         // while (top != nullptr) {
         //     pop();
