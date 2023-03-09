@@ -45,7 +45,7 @@ public:
     void setLapTime(float delta); //feed Timer::GetDeltaTime()
     void print() const;
     void endAttempt(int lap_no, float delta); // potentially not needed
-    //float addLapTimes() const;
+    float addLapTimes();
 };
 
 

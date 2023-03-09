@@ -95,21 +95,40 @@ void Runner::endAttempt(int lap_no, float delta){ //finds best time
     }
 }
 
-/*
-float Runner::addLapTimes() const{
+float Runner::addLapTimes(){
     StackLL<float> temp = this->laps;
     float total;
+    int temp_size = this->laps.n;
+    
+    //add the lap times 
+    do {
+        if (this->laps.n == 1){
+            total += this->laps.show_top();
+        }
+        else{
+            //add top value
+            total += this->laps.show_top();
+            //push to temp to not loose top of stack
+            temp.push(this->laps.show_top());
+            //pop from current runner's stack
+            this->laps.pop();
 
-    float pp = this->laps->top;
-    temp.push(this->laps->top)
+            /*
+            this->laps.show_top();
+            */
+            this->laps.n--;
+        }
+    } while (this->laps.n >= 1);
 
-
-    for (ptr = this->laps; ptr != NULL; ptr = ptr->next){
-        total += ptr->data;
+    //add values back to runner lap stack
+    while (temp_size != this->laps.n) {
+        this->laps.push(temp.show_top());
+        temp.pop();
+        this->laps.n++;
     }
 
+    return total;
 }
-*/
 
 Teacher::Teacher(const std::string new_name, const int new_age,
                  const std::string new_subject)

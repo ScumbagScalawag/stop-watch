@@ -20,7 +20,7 @@ private:
     SNode<T>* top;
     std::string stack_empty;
     //OtherLinkedList<T> S; // alternative to SNode<T>* top;
-    size_t n; //number of elements in stack
+    int n; //number of elements in stack
 
 public:
     StackLL()
@@ -38,6 +38,8 @@ public:
     int size() const;
     void push(T t);
     void pop();
+
+    friend class Runner;
 };
 
 template <typename T> 
