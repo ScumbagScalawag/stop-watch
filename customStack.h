@@ -32,7 +32,7 @@ public:
     };
     
     bool empty() const;
-    const T &show_top() const;
+    const T &show_top() const; // maybe const T (see Runner::addLapTimes()
     void print_stack() const; // for custom types
     void print_stack(bool builtin) const; //for builtin types
     int size() const;
@@ -71,7 +71,7 @@ const T &StackLL<T>::show_top() const {
     return top->data;
 }
 
-//overloaded to allow for buil-in functions to use StackLL::print_stack
+//overloaded to allow for built-in functions to use StackLL::print_stack
 template <typename T>
 void StackLL<T>::print_stack(bool builtin) const{ 
     SNode<T>* ptr;
@@ -81,7 +81,7 @@ void StackLL<T>::print_stack(bool builtin) const{
     } else {
         for (ptr = top; ptr != NULL; ptr = ptr->next) {
             obj = ptr->data;
-            std::cout << obj << " | "; 
+            std::cout << obj << " | "; //works for classes of built-in types
         }
         std::cout << std::endl;
     }

@@ -41,10 +41,11 @@ public:
     //void setTime(float i); // potentially not needed
     float getBestTime() const;
     void setBestTime(float i);
-    void getLaps();
-    void setLaps(float delta); //feed Timer::GetDeltaTime()
+    void printLaps();
+    void setLapTime(float delta); //feed Timer::GetDeltaTime()
     void print() const;
     void endAttempt(int lap_no, float delta); // potentially not needed
+    //float addLapTimes() const;
 };
 
 

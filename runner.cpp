@@ -77,14 +77,15 @@ void Runner::print() const{
     std::cout << "\n";
 }
 
-void Runner::getLaps(){
+void Runner::printLaps(){
+    std::cout << "Lap times for laps 1-3:" <<std::endl;
+    this->laps.print_stack(true);
     //SNode<double>* ptr;
     //print the "laps" stack:
-    this->laps.print_stack(true);
     //for (ptr = this->laps.top; this->laps.top != NULL; )
 }
 
-void Runner::setLaps(float delta){ //feed Timer::GetDeltaTime()
+void Runner::setLapTime(float delta){ //feed Timer::GetDeltaTime()
     laps.push(delta);
 } 
 
@@ -93,6 +94,22 @@ void Runner::endAttempt(int lap_no, float delta){ //finds best time
         this->setBestTime(delta);
     }
 }
+
+/*
+float Runner::addLapTimes() const{
+    StackLL<float> temp = this->laps;
+    float total;
+
+    float pp = this->laps->top;
+    temp.push(this->laps->top)
+
+
+    for (ptr = this->laps; ptr != NULL; ptr = ptr->next){
+        total += ptr->data;
+    }
+
+}
+*/
 
 Teacher::Teacher(const std::string new_name, const int new_age,
                  const std::string new_subject)

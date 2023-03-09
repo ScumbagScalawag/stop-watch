@@ -4,11 +4,14 @@
 #include "runner.h"
 
 void selectOption(char& i);
-void singleRunnerStopwatch();
+void singleRunnerStopwatch(Timer& timer, Runner& runner);
 
 int main (){
+    Timer timer; 
+    Runner runner;
 
-    singleRunnerStopwatch();
+    singleRunnerStopwatch(timer, runner);
+    runner.printLaps();
 
     return 0;
 }
@@ -22,9 +25,7 @@ void selectOption(char& i){
     std::cin >> i;
 }
 
-void singleRunnerStopwatch(){
-    Timer timer; 
-    Runner runner;
+void singleRunnerStopwatch(Timer& timer, Runner& runner){
     char input = 'a';
     int count = 0;
     while (input != 'e' && count < 3){
@@ -46,13 +47,13 @@ void singleRunnerStopwatch(){
                     case 1:
                         std::cout << "Lapping Stopwatch:" << std::endl;
                         timer.PrintTimeStamp();
-                        runner.setLaps(timer.GetDeltaTime());
+                        runner.setLapTime(timer.GetDeltaTime());
                         ++count;
                         break;
                     case 2: 
                         std::cout << "Final Time:" << std::endl;
                         timer.PrintTimeStamp();
-                        runner.setLaps(timer.GetDeltaTime());
+                        runner.setLapTime(timer.GetDeltaTime());
                         runner.setBestTime(timer.GetDeltaTime());
                         ++count;
                         input = 'e'; // end of input
@@ -66,5 +67,5 @@ void singleRunnerStopwatch(){
             default: 
                 std::cout << "Invalid Entry! Make another Selection." << std::endl;
         }
-
+    }
 }
