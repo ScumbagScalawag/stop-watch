@@ -131,18 +131,26 @@ float Runner::addLapTimes(){
 */
 
  
-float Runner::addLapTimes(){
+float Runner::addLapTimes() const{
     StackLL<float> temp_stack = this->laps;
-    StackLL<float> temp_stack_read = this->laps;
+    StackLL<float> temp_stack_read;
     float total = 0.0f;
+
+    int n = 1;
+
     //add the lap times to temp stack
     while ( ! temp_stack.empty()){
-        temp_stack_read.push(this->laps.show_top());
+        temp_stack_read.push(temp_stack.show_top());
         temp_stack.pop();//size automatially adjusted
     }
-    while( ! temp_stack_read.empty()){
+    std::cout << std::endl;
+    while ( ! temp_stack_read.empty()){
+        std::cout << "temp_stack_read's size = " << temp_stack_read.size() << std::endl;
+        std::cout << "total(before add) = " << total << " (n = " << n << ")" << std::endl;
         total += temp_stack_read.show_top();
+        std::cout << "total(after add) = " << total << " (n = " << n << ")" << std::endl;
         temp_stack_read.pop();
+        n++;
     }
     return total;
 }

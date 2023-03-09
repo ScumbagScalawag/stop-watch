@@ -18,7 +18,7 @@ public:
 
 class Student : public Person{
 private:
-    std::string grade; // (optional) maybe make this float towards the end? 
+    std::string grade = "B"; // (optional) maybe make this float towards the end? //"B" just for testing
 public:
     Student(){};
     Student(const std::string new_name, const int new_age,
@@ -45,7 +45,7 @@ public:
     void setLapTime(float delta); //feed Timer::GetDeltaTime()
     void print() const;
     void endAttempt(int lap_no, float delta); // potentially not needed
-    float addLapTimes();
+    float addLapTimes() const;
     int numLaps() const;
 };
 
