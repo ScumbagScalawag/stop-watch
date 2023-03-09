@@ -81,8 +81,15 @@ void Runner::print() const{
     std::cout << "\n";
 }
 
-void Runner::setLaps(int i, float delta){ //feed Timer::GetDeltaTime()
-    laps[i] = delta;
+void Runner::getLaps(){
+    //SNode<double>* ptr;
+    //print the "laps" stack:
+    this->laps.print_stack(true);
+    //for (ptr = this->laps.top; this->laps.top != NULL; )
+}
+
+void Runner::setLaps(float delta){ //feed Timer::GetDeltaTime()
+    laps.push(delta);
 } 
 
 void Runner::endAttempt(int lap_no, float delta){ //finds best time

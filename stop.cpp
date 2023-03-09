@@ -32,13 +32,13 @@ int main (){
                     case 1:
                         std::cout << "Lapping Stopwatch:" << std::endl;
                         timer.PrintTimeStamp();
-                        runner.setLaps(count, timer.GetDeltaTime());
+                        runner.setLaps(timer.GetDeltaTime());
                         ++count;
                         break;
                     case 2: 
                         std::cout << "Final Time:" << std::endl;
                         timer.PrintTimeStamp();
-                        runner.setLaps(count, timer.GetDeltaTime());
+                        runner.setLaps(timer.GetDeltaTime());
                         runner.setBestTime(timer.GetDeltaTime());
                         ++count;
                         input = 'e'; // end of input

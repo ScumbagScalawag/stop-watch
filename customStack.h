@@ -33,7 +33,8 @@ public:
     
     bool empty() const;
     const T &show_top() const;
-    void print_stack() const; 
+    void print_stack() const; // for custom types
+    void print_stack(bool builtin) const; //for builtin types
     int size() const;
     void push(T t);
     void pop();
@@ -70,17 +71,34 @@ const T &StackLL<T>::show_top() const {
     return top->data;
 }
 
+//overloaded to allow for buil-in functions to use StackLL::print_stack
 template <typename T>
-void StackLL<T>::print_stack() const{ 
+void StackLL<T>::print_stack(bool builtin) const{ 
     SNode<T>* ptr;
-    T tempclass;
+    T obj;
     if (empty()) {
         std::cout << "Stack is empty!" << std::endl;
     } else {
         for (ptr = top; ptr != NULL; ptr = ptr->next) {
-            tempclass = ptr->data;                           // Changed print to ONLY work for classes with pre-defined print functions
-            tempclass.print();
+            obj = ptr->data;
+            std::cout << obj << " | "; 
         }
+        std::cout << std::endl;
+    }
+}
+
+template <typename T>
+void StackLL<T>::print_stack() const{ 
+    SNode<T>* ptr;
+    T obj;
+    if (empty()) {
+        std::cout << "Stack is empty!" << std::endl;
+    } else {
+        for (ptr = top; ptr != NULL; ptr = ptr->next) {
+            obj = ptr->data;
+            obj.print();// works for classes with pre-defined print functions
+        }
+        std::cout << std::endl;
     }
 }
 

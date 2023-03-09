@@ -1,6 +1,7 @@
 #ifndef MY_RUNNER
 #define MY_RUNNER
 #include <string>
+#include "customStack.h"
 
 class Person{
 private: 
@@ -30,18 +31,19 @@ class Runner : public Student{
 private:
     //float time;
     float best_time;
-    float laps[3] = {0.0f, 0.0f, 0.0f};
+    StackLL<float> laps;
 public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,
            const int best = 0);  /* const int -> int? this might be updated multiple times in run-time */
-    int getTime() const;
-    void setTime(float i);
+    int getTime() const; // potentially not needed
+    void setTime(float i); // potentially not needed
     float getBestTime() const;
     void setBestTime(float i);
+    void getLaps();
+    void setLaps(float delta); //feed Timer::GetDeltaTime()
     void print() const;
-    void setLaps(int i, float delta); //feed Timer::GetDeltaTime()
-    void endAttempt(int lap_no, float delta); //finds best time
+    void endAttempt(int lap_no, float delta); // potentially not needed
 };
 
 
