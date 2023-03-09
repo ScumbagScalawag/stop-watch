@@ -37,6 +37,11 @@ public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,
            const int best = 0);  /* const int -> int? this might be updated multiple times in run-time */
+    /*
+    ~Runner(){
+        this->laps.~StackLL();
+    };
+    */
     //int getTime() const; // potentially not needed
     //void setTime(float i); // potentially not needed
     float getBestTime() const;
@@ -44,7 +49,6 @@ public:
     void printLaps();
     void setLapTime(float delta); //feed Timer::GetDeltaTime()
     void print() const;
-    void endAttempt(int lap_no, float delta); // potentially not needed
     float addLapTimes() const;
     int numLaps() const;
 };

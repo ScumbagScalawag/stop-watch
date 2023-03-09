@@ -17,8 +17,8 @@ int main (){
     runner.printLaps();//working
     std::cout << "Number of laps ran: " << runner.numLaps() << std::endl; //working 
     std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
-    // runner.setBestTime(runner.addLapTimes());
-    // runner.print();
+    runner.setBestTime(runner.addLapTimes());
+    runner.print();
     
     std::cout << std::endl;
 

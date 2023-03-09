@@ -85,12 +85,6 @@ void Runner::setLapTime(float delta){ //feed Timer::GetDeltaTime()
     laps.push(delta);
 } 
 
-void Runner::endAttempt(int lap_no, float delta){ //finds best time
-    if (delta < this->getBestTime() ){
-        this->setBestTime(delta);
-    }
-}
-
 /*
 float Runner::addLapTimes(){
     StackLL<float> temp_stack = this->laps;//working
@@ -130,7 +124,6 @@ float Runner::addLapTimes(){
 }
 */
 
- 
 float Runner::addLapTimes() const{
     StackLL<float> temp_stack = this->laps;
     StackLL<float> temp_stack_read;
@@ -139,6 +132,7 @@ float Runner::addLapTimes() const{
     int n = 1;
 
     //add the lap times to temp stack
+    // std::cout << "---------------------"
     while ( ! temp_stack.empty()){
         temp_stack_read.push(temp_stack.show_top());
         temp_stack.pop();//size automatially adjusted
@@ -155,6 +149,46 @@ float Runner::addLapTimes() const{
     return total;
 }
 
+/*
+float Runner::addLapTimes() const{
+    StackLL<float> temp_stack = this->laps;
+    StackLL<float> temp_stack_read;
+    float total = 0.0f;
+
+    int n = 1;
+
+    //add the lap times to temp stack
+    temp_stack_read.push(temp_stack.show_top());
+    temp_stack.pop();//size automatially adjusted
+    temp_stack_read.push(temp_stack.show_top());
+    temp_stack.pop();//size automatially adjusted
+    temp_stack_read.push(temp_stack.show_top());
+    temp_stack.pop();//size automatially adjusted
+    std::cout << std::endl;
+
+    std::cout << "temp_stack_read's size = " << temp_stack_read.size() << std::endl;
+    std::cout << "total(before add) = " << total << " (n = " << n << ")" << std::endl;
+    total += temp_stack_read.show_top();
+    std::cout << "total(after add) = " << total << " (n = " << n << ")" << std::endl;
+    temp_stack_read.pop();
+    n++;
+
+    std::cout << "temp_stack_read's size = " << temp_stack_read.size() << std::endl;
+    std::cout << "total(before add) = " << total << " (n = " << n << ")" << std::endl;
+    total += temp_stack_read.show_top();
+    std::cout << "total(after add) = " << total << " (n = " << n << ")" << std::endl;
+    temp_stack_read.pop();
+    n++;
+
+    std::cout << "temp_stack_read's size = " << temp_stack_read.size() << std::endl;
+    std::cout << "total(before add) = " << total << " (n = " << n << ")" << std::endl;
+    total += temp_stack_read.show_top();
+    std::cout << "total(after add) = " << total << " (n = " << n << ")" << std::endl;
+    temp_stack_read.pop();
+    n++;
+    return total;
+}
+*/
 
 
     

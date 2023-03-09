@@ -44,7 +44,8 @@ public:
 
 template <typename T> 
 bool StackLL<T>::empty() const { 
-    return top == NULL;
+    return !this->size(); //potentially buggy 
+    // return top == NULL;
 }
 
 template <typename T> 
