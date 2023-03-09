@@ -1,8 +1,5 @@
 #include "runner.h"
-#include "customStack.h"
-
-#include <string>
-#include <iostream>
+#include<iostream>
 
 //Person::Person(){};
 Person::Person(const std::string new_name, const int new_age)
@@ -76,8 +73,7 @@ void Runner::print() const{
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
     std::cout.width(20); std::cout << std::left << getGrade();
-    std::cout.width(20); std::cout << std::left << getTime();
-    std::cout.width(20); std::cout << std::left << getTime();
+    std::cout.width(20); std::cout << std::left << getBestTime();
     std::cout << "\n";
 }
 

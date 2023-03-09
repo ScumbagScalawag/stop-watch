@@ -22,7 +22,7 @@ int main (){
                 count = 0;
                 std::cout << "Starting Stopwatch:" << std::endl;
                 timer.Restart();
-                timer.PrintTimeStamp();
+                //timer.PrintTimeStamp(); // don't really need to print this here
                 //runner.setLaps(count, 0.0f);
                 break;
             case 'l': //lap

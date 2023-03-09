@@ -1,6 +1,7 @@
 #ifndef MY_RUNNER
 #define MY_RUNNER
 #include <string>
+#include <iostream>
 #include "customStack.h"
 
 class Person{
@@ -36,8 +37,8 @@ public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,
            const int best = 0);  /* const int -> int? this might be updated multiple times in run-time */
-    int getTime() const; // potentially not needed
-    void setTime(float i); // potentially not needed
+    //int getTime() const; // potentially not needed
+    //void setTime(float i); // potentially not needed
     float getBestTime() const;
     void setBestTime(float i);
     void getLaps();
