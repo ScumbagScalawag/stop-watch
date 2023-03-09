@@ -12,6 +12,7 @@ int main (){
 
     singleRunnerStopwatch(timer, runner);
     runner.printLaps();
+    std::cout << "Number of laps ran: " << runner.numLaps() << std::endl; //testing
     std::cout << "Your total time for all 3 laps: " << runner.addLapTimes();
     std::cout << std::endl;
 

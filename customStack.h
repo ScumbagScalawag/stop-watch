@@ -20,7 +20,7 @@ private:
     SNode<T>* top;
     std::string stack_empty;
     //OtherLinkedList<T> S; // alternative to SNode<T>* top;
-    int n; //number of elements in stack
+    int n = 0; //number of elements in stack
 
 public:
     StackLL()

@@ -37,7 +37,7 @@ void Student::setGrade(int g){
     else grade = g;
 }
 
-//Runner::Runner(){};
+//-------------------------Runner::Runner(){};-----------------------------------------
 Runner::Runner(const std::string new_name, const int new_age, const std::string new_grade,
        const int best)  /* const int -> int? this might be updated multiple times in run-time */
     : Student(new_name, new_age, new_grade),
@@ -52,21 +52,17 @@ void Runner::setTime(float i ){
 }
 */
 
-//best_time
+//return best_time
 float Runner::getBestTime() const{
     return best_time;
 }
 
-void Runner::setBestTime(float i){
-    //iterate through stack objects (timestamps) and add them up
-    //SNode<* ptr;
-    //for (Stack)
-    /*
-    if (delta < this->getBestTime() ){
-        this->setBestTime(delta);
+//sets the best total time (for all laps)
+//best used by passing addLapTimes to "time"
+void Runner::setBestTime(float time){
+    if (time < this->getBestTime() ){
+        best_time = time;
     }
-    */
-    best_time = i;
 }
 
 void Runner::print() const{
@@ -99,11 +95,16 @@ float Runner::addLapTimes(){
     StackLL<float> temp = this->laps;
     float total;
     int temp_size = this->laps.n;
+    std::cout << "tempsize = " << temp_size << std::endl;
+    std::cout << "runner's n = " << this->laps.n << std::endl;
+
     
     //add the lap times 
     do {
         if (this->laps.n == 1){
             total += this->laps.show_top();
+            std::cout << "if: n = " << this->laps.n << std::endl;
+
         }
         else{
             //add top value
@@ -117,17 +118,23 @@ float Runner::addLapTimes(){
             this->laps.show_top();
             */
             this->laps.n--;
+            std::cout << "else: n = " << this->laps.n << std::endl;
         }
     } while (this->laps.n >= 1);
 
     //add values back to runner lap stack
     while (temp_size != this->laps.n) {
+        std::cout << "Second While: n = " << this->laps.n << std::endl;
         this->laps.push(temp.show_top());
         temp.pop();
         this->laps.n++;
     }
 
     return total;
+}
+
+int Runner::numLaps() const{
+    return this->laps.size();
 }
 
 Teacher::Teacher(const std::string new_name, const int new_age,

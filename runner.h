@@ -46,6 +46,7 @@ public:
     void print() const;
     void endAttempt(int lap_no, float delta); // potentially not needed
     float addLapTimes();
+    int numLaps() const;
 };
 
 
