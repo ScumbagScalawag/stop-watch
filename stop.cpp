@@ -10,10 +10,13 @@ int main (){
     Timer timer; 
     Runner runner;
 
-    singleRunnerStopwatch(timer, runner);
-    runner.printLaps();
-    std::cout << "Number of laps ran: " << runner.numLaps() << std::endl; //testing
-    std::cout << "Your total time for all 3 laps: " << runner.addLapTimes();
+    std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
+    std::cout << std::endl;
+
+    singleRunnerStopwatch(timer, runner); //working
+    runner.printLaps();//working
+    std::cout << "Number of laps ran: " << runner.numLaps() << std::endl; //working 
+    std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
     std::cout << std::endl;
 
     return 0;

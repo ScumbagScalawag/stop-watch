@@ -91,47 +91,65 @@ void Runner::endAttempt(int lap_no, float delta){ //finds best time
     }
 }
 
+/*
 float Runner::addLapTimes(){
-    StackLL<float> temp = this->laps;
-    float total;
-    int temp_size = this->laps.n;
-    std::cout << "tempsize = " << temp_size << std::endl;
-    std::cout << "runner's n = " << this->laps.n << std::endl;
-
-    
+    StackLL<float> temp_stack = this->laps;//working
+    float total = 0.0f;
+    int temp_size = this->laps.size(); //working
+    std::cout << "tempsize = " << temp_size << std::endl;//working
+    std::cout << "runner's n = " << this->laps.size() << std::endl;//working
     //add the lap times 
-    do {
-        if (this->laps.n == 1){
+    int count = 0;
+    while (count <= 2 || this->laps.size() >= 1){
+        if (this->laps.size() == 1){
             total += this->laps.show_top();
-            std::cout << "if: n = " << this->laps.n << std::endl;
-
+            std::cout << "if: n = " << this->laps.size() << std::endl;
         }
         else{
             //add top value
             total += this->laps.show_top();
             //push to temp to not loose top of stack
-            temp.push(this->laps.show_top());
+            temp_stack.push(this->laps.show_top());
             //pop from current runner's stack
             this->laps.pop();
 
-            /*
-            this->laps.show_top();
-            */
-            this->laps.n--;
+            // this->laps.n--; //size (therefore n) changes WITH push() & pop() !
             std::cout << "else: n = " << this->laps.n << std::endl;
         }
-    } while (this->laps.n >= 1);
-
+        std::cout << "count = " << count << std::endl;
+        count++; 
+    } 
     //add values back to runner lap stack
-    while (temp_size != this->laps.n) {
-        std::cout << "Second While: n = " << this->laps.n << std::endl;
-        this->laps.push(temp.show_top());
-        temp.pop();
-        this->laps.n++;
+    while (temp_size != this->laps.size()) {
+        std::cout << "Second While: n = " << this->laps.size() << std::endl;
+        this->laps.push(temp_stack.show_top()); //size automatically adjusted by push()
+        temp_stack.pop();
     }
 
     return total;
 }
+*/
+
+ 
+float Runner::addLapTimes(){
+    StackLL<float> temp_stack = this->laps;
+    StackLL<float> temp_stack_read = this->laps;
+    float total = 0.0f;
+    //add the lap times to temp stack
+    while ( ! temp_stack.empty()){
+        temp_stack_read.push(this->laps.show_top());
+        temp_stack.pop();//size automatially adjusted
+    }
+    while( ! temp_stack_read.empty()){
+        total += temp_stack_read.show_top();
+        temp_stack_read.pop();
+    }
+    return total;
+}
+
+
+
+    
 
 int Runner::numLaps() const{
     return this->laps.size();
