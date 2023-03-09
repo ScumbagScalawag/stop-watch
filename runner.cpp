@@ -1,4 +1,5 @@
 #include "runner.h"
+#include "customStack.h"
 
 #include <string>
 #include <iostream>
@@ -41,17 +42,53 @@ void Student::setGrade(int g){
 
 //Runner::Runner(){};
 Runner::Runner(const std::string new_name, const int new_age, const std::string new_grade,
-       const int new_time)  /* const int -> int? this might be updated multiple times in run-time */
+       const int best)  /* const int -> int? this might be updated multiple times in run-time */
     : Student(new_name, new_age, new_grade),
-    time(new_time) {}
+    best_time(best) {}
+
+/*
+//time 
 int Runner::getTime() const { return time;}
+
+void Runner::setTime(float i ){
+    time = i;
+}
+*/
+
+//best_time
+float Runner::getBestTime() const{
+    return best_time;
+}
+
+void Runner::setBestTime(float i){
+    //iterate through stack objects (timestamps) and add them up
+    //SNode<* ptr;
+    //for (Stack)
+    /*
+    if (delta < this->getBestTime() ){
+        this->setBestTime(delta);
+    }
+    */
+    best_time = i;
+}
 
 void Runner::print() const{
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
-    std::cout.width(20); std::cout << std::left << getGrade();         // Prints grade
+    std::cout.width(20); std::cout << std::left << getGrade();
+    std::cout.width(20); std::cout << std::left << getTime();
     std::cout.width(20); std::cout << std::left << getTime();
     std::cout << "\n";
+}
+
+void Runner::setLaps(int i, float delta){ //feed Timer::GetDeltaTime()
+    laps[i] = delta;
+} 
+
+void Runner::endAttempt(int lap_no, float delta){ //finds best time
+    if (delta < this->getBestTime() ){
+        this->setBestTime(delta);
+    }
 }
 
 Teacher::Teacher(const std::string new_name, const int new_age,

@@ -2,6 +2,7 @@
 #define MY_CUSTOM_STACK_H
 
 #include <string>
+#include <iostream>
 #include "emptystack.h"
 
 //the each stack node
@@ -87,6 +88,5 @@ template <typename T>
 int StackLL<T>::size() const {
     return n;
 }
-
 
 #endif

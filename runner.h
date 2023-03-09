@@ -28,14 +28,20 @@ public:
 
 class Runner : public Student{
 private:
-    float time;
+    //float time;
     float best_time;
+    float laps[3] = {0.0f, 0.0f, 0.0f};
 public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,
-           const int new_time);  /* const int -> int? this might be updated multiple times in run-time */
+           const int best = 0);  /* const int -> int? this might be updated multiple times in run-time */
     int getTime() const;
+    void setTime(float i);
+    float getBestTime() const;
+    void setBestTime(float i);
     void print() const;
+    void setLaps(int i, float delta); //feed Timer::GetDeltaTime()
+    void endAttempt(int lap_no, float delta); //finds best time
 };
 
 
