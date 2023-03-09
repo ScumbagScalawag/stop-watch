@@ -4,15 +4,29 @@
 #include "runner.h"
 
 void selectOption(char& i);
+void singleRunnerStopwatch();
 
 int main (){
+
+    singleRunnerStopwatch();
+
+    return 0;
+}
+
+void selectOption(char& i){
+    std::cout << "Select option:" << std::endl;
+    std::cout << "s. Start/Restart" << std::endl;
+    std::cout << "l. Lap" << std::endl;
+    std::cout << "e. End" << std::endl;
+    std::cout << "Option: ";
+    std::cin >> i;
+}
+
+void singleRunnerStopwatch(){
     Timer timer; 
+    Runner runner;
     char input = 'a';
     int count = 0;
-
-    //testing runner with timer 
-    Runner runner;
-
     while (input != 'e' && count < 3){
 
         selectOption(input);
@@ -46,22 +60,11 @@ int main (){
                         break;
                     default:
                         std::cout << "ABORT: There was a problem with counting laps" << std::endl;
-                        return 1;
                         break;
                 }
                 break;
             default: 
                 std::cout << "Invalid Entry! Make another Selection." << std::endl;
         }
-    }
-    return 0;
-}
 
-void selectOption(char& i){
-    std::cout << "Select option:" << std::endl;
-    std::cout << "s. Start/Restart" << std::endl;
-    std::cout << "l. Lap" << std::endl;
-    std::cout << "e. End" << std::endl;
-    std::cout << "Option: ";
-    std::cin >> i;
 }
