@@ -92,16 +92,20 @@ const T &StackLL<T>::show_top() const {
 //overloaded to allow for built-in functions to use StackLL::print_stack
 template <typename T>
 void StackLL<T>::print_stack(bool builtin) const{ 
+    std::cout << "Start of print_stack()\n";
     SNode<T>* ptr;
     T obj;
     if (builtin){
+        std::cout << "after if(builtin)\n";
         if (empty()) {
             std::cout << "Stack is empty!" << std::endl;
         } else {
+            std::cout << "before for loop: this->top = " << top << std::endl;
             for (ptr = this->top; ptr != NULL; ptr = ptr->next) {
                 obj = ptr->data;
                 std::cout << obj << " | "; //works for classes of built-in types
             }
+            std::cout << "after for loop" << top << std::endl;
             std::cout << std::endl;
         }
     }
@@ -110,6 +114,7 @@ void StackLL<T>::print_stack(bool builtin) const{
         std::cout << "Pass either \"true\" to represent printing a stack of built-in types,\n";
         std::cout << "or pass nothing to represent printing a stack of objects that have a print() function\n";
     }
+    std::cout << "after for loop" << top << std::endl;
 }
 
 template <typename T>
