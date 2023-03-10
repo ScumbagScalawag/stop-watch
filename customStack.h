@@ -68,8 +68,8 @@ void StackLL<T>::pop() {
     else{
         //throw emptyStack("Cannot Pop from an empty Stack");
         SNode<T>* node = top;
-        std::cout << std::endl;//testing
         std::cout << "DELETING top->data = " << top->data << std::endl;//testing
+        std::cout << std::endl;//testing
         top = top->next;
         node->next = NULL;//not necessary, but maybe helpful
         delete (node);

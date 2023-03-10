@@ -140,6 +140,7 @@ float Runner::addLapTimes() const{
     // std::cout << "---------------------"
     while ( ! temp_stack.empty()){
         temp_stack_read.push(temp_stack.show_top());
+        std::cout << "temp_stack_read's top = " <<  temp_stack_read.show_top() << std::endl;
         temp_stack.pop();//size automatially adjusted
     }
     std::cout << std::endl;
