@@ -24,8 +24,8 @@ public:
     Student(const std::string new_name, const int new_age,
             const std::string new_grade);
     std::string getGrade() const;
-    void print() const;
     void setGrade(int g);
+    void print() const;
 };
 
 class Runner : public Student{

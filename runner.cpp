@@ -81,9 +81,6 @@ void Runner::print() const{
 void Runner::printLaps(){
     std::cout << "Lap times for laps 1-3:" <<std::endl;
     this->laps.print_stack(true);
-    //SNode<double>* ptr;
-    //print the "laps" stack:
-    //for (ptr = this->laps.top; this->laps.top != NULL; )
 }
 
 void Runner::setLapTime(float delta){ //feed Timer::GetDeltaTime()
@@ -130,11 +127,21 @@ float Runner::addLapTimes(){
 */
 
 float Runner::addLapTimes() const{
+    std::cout << "\nInside addLapTimes()\n";
     StackLL<float> temp_stack(this->laps);
     StackLL<float> temp_stack_read;
     float total = 0.0f;
 
     int n = 1;
+    std::cout << "BEFORE THE WHILE LOOPS------------------------" << std::endl; 
+    std::cout << "size of temp_stack_read = " << temp_stack_read.size() << std::endl;
+    std::cout << "size of temp_stack = " << temp_stack.size() << std::endl;
+    std::cout << "size of this->laps = " << this->laps.size() << std::endl;
+    std::cout << "----------------------------------------------" << std::endl; 
+    temp_stack_read.print_stack(true);
+    temp_stack.print_stack(true);
+    this->laps.print_stack(true);
+    
 
     //add the lap times to temp stack
     // std::cout << "---------------------"
@@ -143,8 +150,14 @@ float Runner::addLapTimes() const{
         std::cout << "temp_stack_read's top = " <<  temp_stack_read.show_top() << std::endl;
         temp_stack.pop();//size automatially adjusted
     }
+    std::cout << "AFTER WHILE LOOP 1----------------------------" << std::endl; 
+    std::cout << "size of temp_stack_read = " << temp_stack_read.size() << std::endl;
+    std::cout << "size of temp_stack = " << temp_stack.size() << std::endl;
+    std::cout << "size of this->laps = " << this->laps.size() << std::endl;
+    std::cout << "----------------------------------------------" << std::endl; 
+
     std::cout << std::endl;
-    while ( ! temp_stack_read.empty()){
+    while ( ! temp_stack_read.empty() ){
         std::cout << "temp_stack_read's size = " << temp_stack_read.size() << std::endl;
         std::cout << "total(before add) = " << total << " (n = " << n << ")" << std::endl;
         total += temp_stack_read.show_top();
@@ -153,6 +166,11 @@ float Runner::addLapTimes() const{
         n++;
         std::cout << "End of total Loop!" << std::endl;
     }
+    std::cout << "AFTER WHILE LOOP 2----------------------------" << std::endl; 
+    std::cout << "size of temp_stack_read = " << temp_stack_read.size() << std::endl;
+    std::cout << "size of temp_stack = " << temp_stack.size() << std::endl;
+    std::cout << "size of this->laps = " << this->laps.size() << std::endl;
+    std::cout << "----------------------------------------------" << std::endl; 
     std::cout << "End of addLapTimes()" << std::endl;
     return total;
 }

@@ -5,13 +5,18 @@
 #include <iostream>
 #include "emptystack.h"
 
+// template <typename T>
+// class StackLL;
+
 //the each stack node
 template <typename T>
 class SNode { 
 public: // figure out friend class and making this private!!!
     T data; 
     SNode<T>* next; 
-    //friend class StackLinkedList<T>; // provide StackLinkedList access
+    
+    template <typename>
+    friend class StackLL;
 };
 
 template <typename T> 
@@ -89,14 +94,21 @@ template <typename T>
 void StackLL<T>::print_stack(bool builtin) const{ 
     SNode<T>* ptr;
     T obj;
-    if (empty()) {
-        std::cout << "Stack is empty!" << std::endl;
-    } else {
-        for (ptr = top; ptr != NULL; ptr = ptr->next) {
-            obj = ptr->data;
-            std::cout << obj << " | "; //works for classes of built-in types
+    if (builtin){
+        if (empty()) {
+            std::cout << "Stack is empty!" << std::endl;
+        } else {
+            for (ptr = this->top; ptr != NULL; ptr = ptr->next) {
+                obj = ptr->data;
+                std::cout << obj << " | "; //works for classes of built-in types
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
+    }
+    else{
+        std::cout << "Invalid use of StackLL<T>::print_stack().\n";
+        std::cout << "Pass either \"true\" to represent printing a stack of built-in types,\n";
+        std::cout << "or pass nothing to represent printing a stack of objects that have a print() function\n";
     }
 }
 

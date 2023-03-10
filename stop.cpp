@@ -8,10 +8,11 @@ void singleRunnerStopwatch(Timer& timer, Runner& runner);
 
 int main (){
     Timer timer; 
-    Runner runner;
+    Runner runner("John", 20, "A");
 
     std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
     std::cout << std::endl;
+    runner.printLaps();
 
     singleRunnerStopwatch(timer, runner); //working
     runner.printLaps();//working
@@ -20,7 +21,11 @@ int main (){
     std::cout << std::endl;
     std::cout << "After addLapTimes() called" << std::endl;
 
-    runner.printLaps();//doesn't work -> pobably because of a problem with runner.laps
+    std::cout << "SOME TEXT AFTER ALL THAT STUFF" << std::endl;
+
+    runner.printLaps();
+
+    // runner.printLaps();//doesn't work -> pobably because of a problem with runner.laps
     //being affected by the call of addLapTimes()
 
     float i = runner.addLapTimes(); // second call is where things go wrong!!!!!!!!!!!!!
