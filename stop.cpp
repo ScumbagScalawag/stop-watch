@@ -10,11 +10,12 @@ int main (){
     Timer timer; 
     Runner runner("John", 20, "A");
 
-    std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
-    std::cout << std::endl;
+    // std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
+    // std::cout << std::endl;
     runner.printLaps();
 
     singleRunnerStopwatch(timer, runner); //working
+
     runner.printLaps();//working
     std::cout << "Number of laps ran: " << runner.numLaps() << std::endl; //working 
     std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
@@ -29,7 +30,7 @@ int main (){
     //being affected by the call of addLapTimes()
 
     float i = runner.addLapTimes(); // second call is where things go wrong!!!!!!!!!!!!!
-    std::cout << "i = " << i << std::endl;
+    std::cout << "Your total time for all 3 laps: " << i << std::endl;
 
     // runner.setBestTime(i);
     // runner.print();
