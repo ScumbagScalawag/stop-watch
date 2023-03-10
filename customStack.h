@@ -26,8 +26,11 @@ public:
     StackLL()
     : top(NULL){};
     ~StackLL(){
-        while (top != NULL) {
-        pop();
+        while (!this->empty()) {
+            SNode<T>* temp = top;
+            top = top->next;
+            temp->next = NULL;
+            delete temp;
         }
     };
     
@@ -44,8 +47,8 @@ public:
 
 template <typename T> 
 bool StackLL<T>::empty() const { 
-    return !this->size(); //potentially buggy 
-    // return top == NULL;
+    // return !this->size(); //potentially buggy 
+    return top == NULL;
 }
 
 template <typename T> 
@@ -59,11 +62,18 @@ void StackLL<T>::push(T t) {
 
 template <typename T>
 void StackLL<T>::pop() { 
-    if (empty())
-        throw emptyStack();
-    SNode<T>* node = top;
-    top = top->next;
-    delete (node);
+    if (empty()){
+        std::cout << "Error: Stack is empty!" << std::endl;
+    }
+    else{
+        //throw emptyStack("Cannot Pop from an empty Stack");
+        SNode<T>* node = top;
+        std::cout << std::endl;//testing
+        std::cout << "DELETING top->data = " << top->data << std::endl;//testing
+        top = top->next;
+        node->next = NULL;//not necessary, but maybe helpful
+        delete (node);
+    }
     --n;
 }
 

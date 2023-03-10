@@ -43,6 +43,11 @@ Runner::Runner(const std::string new_name, const int new_age, const std::string 
     : Student(new_name, new_age, new_grade),
     best_time(best) {}
 
+Runner::Runner(const Runner& r){
+    this->best_time = r.best_time;
+    this->laps = r.laps;
+}
+
 /*
 //time 
 int Runner::getTime() const { return time;}
@@ -125,7 +130,7 @@ float Runner::addLapTimes(){
 */
 
 float Runner::addLapTimes() const{
-    StackLL<float> temp_stack = this->laps;
+    StackLL<float> temp_stack(this->laps);
     StackLL<float> temp_stack_read;
     float total = 0.0f;
 
@@ -145,7 +150,9 @@ float Runner::addLapTimes() const{
         std::cout << "total(after add) = " << total << " (n = " << n << ")" << std::endl;
         temp_stack_read.pop();
         n++;
+        std::cout << "End of total Loop!" << std::endl;
     }
+    std::cout << "End of addLapTimes()" << std::endl;
     return total;
 }
 

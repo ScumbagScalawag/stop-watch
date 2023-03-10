@@ -37,6 +37,7 @@ public:
     Runner(){};
     Runner(const std::string new_name, const int new_age, const std::string new_grade,
            const int best = 0);  /* const int -> int? this might be updated multiple times in run-time */
+    Runner(const Runner& r);
     /*
     ~Runner(){
         this->laps.~StackLL();
