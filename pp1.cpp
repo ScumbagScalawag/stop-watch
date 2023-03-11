@@ -15,6 +15,8 @@ int main() {
     
     //Initialize teacherstack to include Professor Neal
     teacherstack.push(Teacher("Tempest Neal",30,"Data Structures in C++"));
+    teacherstack.push(Teacher("Noah",30,"some other text"));
+
     std::cout << "\nYou will be getting extra credit for the following class:\n";
     std::cout << "====================================================================\n";
     std::cout.width(20); std::cout << std::left << "Name";

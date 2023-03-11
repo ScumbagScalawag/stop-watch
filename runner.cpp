@@ -63,8 +63,14 @@ float Runner::getBestTime() const{
 //Sets the best total time (for all laps combined).
 //Best used by passing addLapTimes to "time"
 void Runner::setBestTime(float time){
-    if (time < this->getBestTime() ){
+    best_time = time;
+    if(best_time == 0.0f){
         best_time = time;
+    }
+    else{
+        if (time < best_time){
+            best_time = time;
+        }
     }
 }
 
