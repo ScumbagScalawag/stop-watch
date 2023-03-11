@@ -10,24 +10,22 @@ void singleRunnerStopwatch(Timer& timer, Runner& runner);
 void selectOption(char& i);
 
 int main() {
-    StackLL<Runner> runnerstack;
     StackLL<Teacher> teacherstack;
     
     //Initialize teacherstack to include Professor Neal
     teacherstack.push(Teacher("Tempest Neal",30,"Data Structures in C++"));
-    teacherstack.push(Teacher("Noah",30,"some other text"));
+    teacherstack.push(Teacher("Noah",20,"Project Lead"));
 
-    std::cout << "\nYou will be getting extra credit for the following class:\n";
+    std::cout << "\nIf your best time is less than 3 seconds, you will be getting extra credit for the following class:\n";
     std::cout << "====================================================================\n";
     std::cout.width(20); std::cout << std::left << "Name";
     std::cout.width(20); std::cout << std::left << "Age";
     std::cout << std::left << "Subject\n";
     teacherstack.print_stack();
-    
-    // While loop functionality (default values)
-    char ch = 'y';
-    bool flag = true;
 
+    // Initialize target goal
+    float goal = 3.0f;
+    
     // Initialize variables for runner
     std::string runnerName = "Unknown";
     int runnerAge = 0;
@@ -38,150 +36,69 @@ int main() {
     Runner temp_runner;
     Timer timer;
 
-    std::cout << "Hello runners! I see you are looking for some extra credit. Let's get started!\n";
-    while (flag){
-        try {
-            // Ask for runner details
-            std::cout << "Enter your name: ";
-            std::cin >> runnerName;
-            std::cout << "Enter your age (as interger): ";
-            std::cin >> runnerAge;
-            std::cout << "Enter your grade (as float): ";
-            std::cin >> runnerGrade;
-
-            temp_runner = Runner(runnerName, runnerAge, runnerGrade, runnerTime);//time initialied as 0.0f
+    std::cout << "Hello runner! I see you are looking for some extra credit. Let's get started!\n";
+    
 
             /* ----------------------------------------------------------------------------------------------
             Add the necessary timer functionality here. Should return final time that can be given to a runner.
             This can be best lap time and is stored in variable runnerTime
             ---------------------------------------------------------------------------------------------- */
+            bool flag = true;
+            char ch = 'y';
 
-            singleRunnerStopwatch(timer, temp_runner); 
+            while (flag == true){
+                // Ask for runner details
+                std::cout << "Enter your name: ";
+                std::cin >> runnerName;
+                std::cout << "Enter your age (as interger): ";
+                std::cin >> runnerAge;
+                std::cout << "Enter your grade (as float): ";
+                std::cin >> runnerGrade;
 
-            std::cout << "Your total time for all 3 laps: " << temp_runner.addLapTimes(); 
-            std::cout << std::endl;
+                temp_runner = Runner(runnerName, runnerAge, runnerGrade, runnerTime);//time initialied as 0.0f
 
-            temp_runner.printLaps();
+                singleRunnerStopwatch(timer, temp_runner);
 
-            std::cout << std::endl;
-            temp_runner.setBestTime(temp_runner.addLapTimes());
-            temp_runner.print();
+                // Show details
+                std::cout << "\nThank you for participating here are the results\n";
+                
+                temp_runner.printLaps();
+                std::cout << std::endl << std::endl;
+                
+                std::cout << "Your total time for all 3 laps: " << temp_runner.addLapTimes(); 
+                std::cout << std::endl << std::endl;
 
+                temp_runner.setBestTime(temp_runner.addLapTimes());
+                std::cout << "All your details: \n";
+                std::cout.width(20); std::cout << std::left << "Name";
+                std::cout.width(20); std::cout << std::left << "Age";
+                std::cout.width(20); std::cout << std::left << "Grade";
+                std::cout << std::left << "Best Time\n";
+                std::cout << "====================================================================\n";
+                temp_runner.print(); 
 
-            // Create runner object with those details and add to runnerstack
-            runnerstack.push(temp_runner);
-
-            // Continue?
-            while (ch == 'y'){
-                std::cout << "Are there any more runners? (y/n): ";
-                std::cin >> ch;
-                if (ch == 'n'){
+                if (temp_runner.getBestTime() < goal){
+                    std::cout << "Congrats! You will be getting extra credit!\n";
                     flag = false;
-                }else if (ch == 'y'){
-                    std::cout << "\nAnother runner! Great! Input their information below.\n";
-                    break;
                 }else{
-                    std::cout << "INVALID OPTION!\n";
-                    ch = 'y';
-                }
-            }
-
-        } catch (emptyStack &es) {
-            std::cout << "ERROR: ";
-            std::cout << es.what() << std::endl;
-            std::cout << "ABORTING PROGRAM" << std::endl;
-            return 1;
-        }
-    }
-
-    // Menu based operations to check runnerstack functions
-    flag = true;
-    std::cout << "\nNow that the runners have been finalized, what would you like to do?\n";
-    while (flag){
-        try{  
-            int option = 4;
-            ch = 'y';
-            while(ch == 'y'){
-                std::cout << "1. Print All Runner\n2. Pop Runner\n3. Return Most Recent Runner\n";
-                std::cout << "Enter option (1-3): ";
-                std::cin >> option;
-                while(option < 1 || option >3){
-                    std::cout << "INVALID OPTION! Enter option (1-3): ";
-                    std::cin >> option;
-                }
-
-                switch (option)
-                {
-                case 1:
-                    std::cout << "Printing all runners...\n";
-                    std::cout.width(20); std::cout << std::left << "Name";
-                    std::cout.width(20); std::cout << std::left << "Age";
-                    std::cout.width(20); std::cout << std::left << "Grade";
-                    std::cout << std::left << "Best Time\n";
-                    std::cout << "====================================================================\n";
-                    runnerstack.print_stack();
-                    break;
-                
-                case 2:
-                    runnerstack.pop();
-                    std::cout << "Most recent runner has been removed...\n";
-                    break;
-                
-                case 3:
-                    std::cout << "Details about most recent runner...\n";
-                    std::cout.width(20); std::cout << std::left << "Name";
-                    std::cout.width(20); std::cout << std::left << "Age";
-                    std::cout.width(20); std::cout << std::left << "Grade";
-                    std::cout << std::left << "Best Time\n";
-                    std::cout << "====================================================================\n";
-                    std::cout << "\n";
-                    runnerstack.show_top().print();
-                    break;
-                
-                default:
-                    break;
-                }
-
-                // Continue?
-                while (ch == 'y'){
-                    std::cout << "Would you like to continue? (y/n): ";
-                    std::cin >> ch;
-                    if (ch == 'n'){
-                        flag = false;
-                    }else if (ch == 'y'){
-                        break;
-                    }else{
-                        std::cout << "INVALID OPTION!\n";
-                        ch = 'y';
+                    std::cout << "Unfortunately you didn't beat the target of 3 seconds\n";
+                    while (ch == 'y'){
+                        std::cout << "Would you like to try again? (y/n): ";
+                        std::cin >> ch;
+                        if (ch == 'y'){
+                            flag = true;
+                            break;
+                        }else if (ch =='n'){
+                            flag = false;
+                            break;
+                        }else{
+                            std::cout << "Invalid input!";
+                            ch = 'y';
+                        }
                     }
                 }
-            }
-        }catch (emptyStack &es) {
-            std::cout << "ERROR: ";
-            std::cout << es.what() << std::endl;
-            std::cout << "ABORTING PROGRAM" << std::endl;
-            return 1;
-        }
-    }
-
-
-    /* Best time( after 3 "laps") gets 5 points extra credit! */
-    /*
-    for (i = (start of runner stack); i != (end); ++i){
-
-        print each students grade
-        if (student.time = best_time)
-            student.setGrade(student.getGrade + 5)
-            print some neat message that points to the winner of the pack 
-
+            }      
     
-    }
-
-
-
-    */
-
-
     std::cout << "\nThank you for participating!\n";
     return 0;
 }
@@ -239,4 +156,5 @@ void singleRunnerStopwatch(Timer& timer, Runner& runner){
                 std::cout << "Invalid Entry! Make another Selection." << std::endl;
         }
     }
+    
 }
