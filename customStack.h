@@ -121,13 +121,14 @@ void StackLL<T>::print_stack(bool builtin) const{
 template <typename T>
 void StackLL<T>::print_stack() const{ 
     SNode<T>* ptr;
-    T obj;
+    // T obj;
     if (empty()) {
         std::cout << "Stack is empty!" << std::endl;
     } else {
         for (ptr = top; ptr != NULL; ptr = ptr->next) {
-            obj = ptr->data;
-            obj.print();//calls object's pre-defined print function
+            // obj = ptr->data;
+            // obj.print();//calls object's pre-defined print function
+            ptr->data.print();
         }
         std::cout << std::endl;
     }

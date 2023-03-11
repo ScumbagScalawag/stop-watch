@@ -2,8 +2,8 @@
 #include <string>
 
 #include "emptystack.h"
-#include "customStack.h"
 #include "runner.h"
+#include "customStack.h"
 #include "timer.h"
 
 void singleRunnerStopwatch(Timer& timer, Runner& runner);
@@ -62,6 +62,8 @@ int main() {
             temp_runner.printLaps();
 
             std::cout << std::endl;
+            temp_runner.setBestTime(temp_runner.addLapTimes());
+            temp_runner.print();
 
 
             // Create runner object with those details and add to runnerstack
@@ -124,7 +126,6 @@ int main() {
                     break;
                 
                 case 3:
-                    temp_runner = runnerstack.show_top();
                     std::cout << "Details about most recent runner...\n";
                     std::cout.width(20); std::cout << std::left << "Name";
                     std::cout.width(20); std::cout << std::left << "Age";
@@ -132,7 +133,7 @@ int main() {
                     std::cout << std::left << "Best Time\n";
                     std::cout << "====================================================================\n";
                     std::cout << "\n";
-                    temp_runner.print();
+                    runnerstack.show_top().print();
                     break;
                 
                 default:
