@@ -18,13 +18,13 @@ public:
 
 class Student : public Person{
 private:
-    std::string grade = "B"; // (optional) maybe make this float towards the end? //"B" just for testing
+    float grade = 0.0f; 
 public:
     Student(){};
     Student(const std::string new_name, const int new_age,
-            const std::string new_grade);
-    std::string getGrade() const;
-    void setGrade(int g);
+            const float new_grade);
+    float getGrade() const;
+    void setGrade(float g);
     void print() const;
 };
 
@@ -35,8 +35,8 @@ private:
     StackLL<float> laps;
 public:
     Runner(){};
-    Runner(const std::string new_name, const int new_age, const std::string new_grade,
-           const int best = 0);  /* const int -> int? this might be updated multiple times in run-time */
+    Runner(const std::string new_name, const int new_age, const float new_grade,
+           const float best = 0.0f);  /* const int -> int? this might be updated multiple times in run-time */
     Runner(const Runner& r);
     /*
     ~Runner(){

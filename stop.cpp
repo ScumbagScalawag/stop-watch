@@ -8,7 +8,7 @@ void singleRunnerStopwatch(Timer& timer, Runner& runner);
 
 int main (){
     Timer timer; 
-    Runner runner("John", 20, "A");
+    Runner runner("John", 20, 92.2f);
 
     // std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
     // std::cout << std::endl;

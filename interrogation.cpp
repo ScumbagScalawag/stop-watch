@@ -1,20 +1,16 @@
 #include <iostream>
 
 #include "customStack.h"
+#include "runner.h"
 
 int main(){
-    StackLL<int> stack;
-    stack.push(29);
-    stack.push(5);
-    stack.push(79);
-    stack.push(109);
+    Runner runner("Holly", 21, 93.2f, 27.6f);
+    Runner sec_run(runner);
 
-    std::cout << "Before pop(s)" << std::endl;
-    stack.pop();
-    //stack.pop();
-    //stack.pop();
-    //stack.pop();
-    std::cout << "After pop(s)" << std::endl;
+    runner.print();
+    std::cout << runner.getBestTime() << std::endl;
+    sec_run.print();
+    std::cout << sec_run.getBestTime() << std::endl;
 
     return 0;
 }

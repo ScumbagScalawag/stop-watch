@@ -21,32 +21,35 @@ void Person::print(){
 
 //Student: inherets "Person" information
 Student::Student(const std::string new_name, const int new_age,
-                 const std::string new_grade) 
+                 const float new_grade) 
     : Person(new_name, new_age),
     grade(new_grade){}
 
 //Returns Student's grade
-std::string Student::getGrade() const {return grade;}            // getGrade() needed for print
+float Student::getGrade() const {return grade;}
 
 //Prints Student-specific information
 void Student::print() const {
     std::cout.width(20); std::cout << std::left << getName();
     std::cout.width(20); std::cout << std::left << getAge();
-    std::cout.width(20); std::cout << std::left << grade;
-    std::cout << "\n";
+    std::cout.width(20); std::cout << std::left << getGrade();
+    std::cout << std::endl;
 }
 
-void Student::setGrade(int g){
-    if (g > 100) grade = 100;
+//Sets grade (no more than 100)
+void Student::setGrade(float g){
+    if (g > 100.0f) grade = 100.0f;
     else grade = g;
 }
 
 //Runner: inherets "Student" information
-Runner::Runner(const std::string new_name, const int new_age, const std::string new_grade,
-       const int best)  /* const int -> int? this might be updated multiple times in run-time */
+Runner::Runner(const std::string new_name, const int new_age, const float new_grade,
+       const float best)  /* const int -> int? this might be updated multiple times in run-time */
     : Student(new_name, new_age, new_grade),
     best_time(best) {}
 
+//Creates a new runner ONLY with same properties for laps and best_time
+//Used ONLY for copying runner's time-based information 
 Runner::Runner(const Runner& r){
     this->best_time = r.best_time;
     this->laps = r.laps;

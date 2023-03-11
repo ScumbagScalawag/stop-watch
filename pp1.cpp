@@ -16,8 +16,9 @@ int main() {
     bool flag = true;
 
     // Initialize variables for runner
-    std::string runnerName , runnerGrade;
-    int runnerAge;
+    std::string runnerName = "Unknown";
+    int runnerAge = 0;
+    float runnerGrade = 0.0f;
     float runnerTime = 0.0f;           // This can be float depending on the value of time
 
 
@@ -29,9 +30,9 @@ int main() {
             // Ask for runner details
             std::cout << "Enter your name: ";
             std::cin >> runnerName;
-            std::cout << "Enter your age: ";
+            std::cout << "Enter your age (as interger): ";
             std::cin >> runnerAge;
-            std::cout << "Enter your grade: ";
+            std::cout << "Enter your grade (as float): ";
             std::cin >> runnerGrade;
 
 
@@ -39,7 +40,7 @@ int main() {
             /* runnerTime = getTime() */
 
             // Create runner object with those details and add to runnerstack
-            runnerstack.push(Runner(runnerName,runnerAge,runnerGrade,runnerTime));
+            runnerstack.push(Runner(runnerName, runnerAge, runnerGrade, runnerTime));
 
             // Print all runners
             std::cout << "Printing all runners...\n";
