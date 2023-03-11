@@ -100,14 +100,12 @@ template <typename T>
 void StackLL<T>::print_stack(bool builtin) const{ 
     std::cout << "Start of print_stack()\n";
     SNode<T>* ptr;
-    T obj;
     if (builtin){
         if (empty()) {
             std::cout << "Stack is empty!" << std::endl;
         } else {
             for (ptr = this->top; ptr != NULL; ptr = ptr->next) {
-                obj = ptr->data;
-                std::cout << obj << " | "; //works for classes of built-in types
+                std::cout << ptr->data << " | "; 
             }
         }
     }
