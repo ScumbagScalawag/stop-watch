@@ -100,7 +100,6 @@ const T &StackLL<T>::show_top() const {
 //Prints the stack of built-in data types;
 template <typename T>
 void StackLL<T>::print_stack(bool builtin) const{ 
-    std::cout << "Start of print_stack()\n";
     SNode<T>* ptr;
     if (builtin){
         if (empty()) {

@@ -56,6 +56,14 @@ int main() {
 
             singleRunnerStopwatch(timer, temp_runner); 
 
+            std::cout << "Your total time for all 3 laps: " << temp_runner.addLapTimes(); 
+            std::cout << std::endl;
+
+            temp_runner.printLaps();
+
+            std::cout << std::endl;
+
+
             // Create runner object with those details and add to runnerstack
             runnerstack.push(temp_runner);
 
