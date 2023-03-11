@@ -4,12 +4,14 @@
 #include "emptystack.h"
 #include "customStack.h"
 #include "runner.h"
+#include "timer.h"
 
+void singleRunnerStopwatch(Timer& timer, Runner& runner);
+void selectOption(char& i);
 
 int main() {
-    StackLL<int> istack; 
     StackLL<Runner> runnerstack;
-    StackLL<Teacher> teacherstack; // To include teacher class 
+    StackLL<Teacher> teacherstack;
     
     //Initialize teacherstack to include Professor Neal
     teacherstack.push(Teacher("Tempest Neal",30,"Data Structures in C++"));
@@ -31,7 +33,8 @@ int main() {
     float runnerTime = 0.0f;
 
     // Temp runner objects needed for print
-    Runner temp;
+    Runner temp_runner;
+    Timer timer;
 
     std::cout << "Hello runners! I see you are looking for some extra credit. Let's get started!\n";
     while (flag){
@@ -44,23 +47,26 @@ int main() {
             std::cout << "Enter your grade (as float): ";
             std::cin >> runnerGrade;
 
-            /*
+            temp_runner = Runner(runnerName, runnerAge, runnerGrade, runnerTime);//time initialied as 0.0f
+
+            /* ----------------------------------------------------------------------------------------------
             Add the necessary timer functionality here. Should return final time that can be given to a runner.
             This can be best lap time and is stored in variable runnerTime
-            */
+            ---------------------------------------------------------------------------------------------- */
+
+            singleRunnerStopwatch(timer, temp_runner); 
 
             // Create runner object with those details and add to runnerstack
-            runnerstack.push(Runner(runnerName, runnerAge, runnerGrade, runnerTime));
+            runnerstack.push(temp_runner);
 
-            
             // Continue?
             while (ch == 'y'){
-                std::cout << "Are there any more runner? (y/n): ";
+                std::cout << "Are there any more runners? (y/n): ";
                 std::cin >> ch;
                 if (ch == 'n'){
                     flag = false;
                 }else if (ch == 'y'){
-                    std::cout << "\nAnother runner! Let's get started!\n";
+                    std::cout << "\nAnother runner! Great! Input their information below.\n";
                     break;
                 }else{
                     std::cout << "INVALID OPTION!\n";
@@ -110,7 +116,7 @@ int main() {
                     break;
                 
                 case 3:
-                    temp = runnerstack.show_top();
+                    temp_runner = runnerstack.show_top();
                     std::cout << "Details about most recent runner...\n";
                     std::cout.width(20); std::cout << std::left << "Name";
                     std::cout.width(20); std::cout << std::left << "Age";
@@ -118,7 +124,7 @@ int main() {
                     std::cout << std::left << "Best Time\n";
                     std::cout << "====================================================================\n";
                     std::cout << "\n";
-                    temp.print();
+                    temp_runner.print();
                     break;
                 
                 default:
@@ -146,6 +152,8 @@ int main() {
             return 1;
         }
     }
+
+
     /* Best time( after 3 "laps") gets 5 points extra credit! */
     /*
     for (i = (start of runner stack); i != (end); ++i){
@@ -165,4 +173,59 @@ int main() {
 
     std::cout << "\nThank you for participating!\n";
     return 0;
+}
+
+void selectOption(char& i){
+    std::cout << "Select option:" << std::endl;
+    std::cout << "s. Start/Restart" << std::endl;
+    std::cout << "l. Lap" << std::endl;
+    std::cout << "e. End" << std::endl;
+    std::cout << "Option: ";
+    std::cin >> i;
+}
+
+
+void singleRunnerStopwatch(Timer& timer, Runner& runner){
+    char input = 'a';
+    int count = 0;
+    while (input != 'e' && count < 3){
+
+        selectOption(input);
+
+        switch (input){
+            case 's': //start/restart
+                count = 0;
+                std::cout << "Starting Stopwatch:" << std::endl;
+                timer.Restart();
+                //timer.PrintTimeStamp(); // don't really need to print this here
+                //runner.setLaps(count, 0.0f);
+                break;
+            case 'l': //lap
+                // accounting for 3 laps:
+                switch (count){
+                    case 0: //fallthrough:
+                    case 1:
+                        std::cout << "Lapping Stopwatch:" << std::endl;
+                        timer.PrintTimeStamp();
+                        runner.setLapTime(timer.GetDeltaTime());
+                        ++count;
+                        break;
+                    case 2: 
+                        std::cout << "Final Time:" << std::endl;
+                        timer.PrintTimeStamp();
+                        runner.setLapTime(timer.GetDeltaTime());
+                        runner.setBestTime(timer.GetDeltaTime());
+                        ++count;
+                        input = 'e'; // end of input
+                        std::cout << "Good Job! Don't forget to hydrate!" << std::endl;
+                        break;
+                    default:
+                        std::cout << "ABORT: There was a problem with counting laps" << std::endl;
+                        break;
+                }
+                break;
+            default: 
+                std::cout << "Invalid Entry! Make another Selection." << std::endl;
+        }
+    }
 }
