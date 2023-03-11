@@ -155,6 +155,5 @@ void singleRunnerStopwatch(Timer& timer, Runner& runner){
             default: 
                 std::cout << "Invalid Entry! Make another Selection." << std::endl;
         }
-    }
-    
+    }    
 }
