@@ -5,13 +5,9 @@
 #include <iostream>
 #include "emptystack.h"
 
-// template <typename T>
-// class StackLL;
-
-//the each stack node
 template <typename T>
 class SNode { 
-public: // figure out friend class and making this private!!!
+public: 
     T data; 
     SNode<T>* next; 
     
@@ -20,42 +16,49 @@ public: // figure out friend class and making this private!!!
 };
 
 template <typename T> 
-class StackLL { //gotta implement the stack as a singly linked list of elements
+class StackLL {
 private:
     SNode<T>* top;
-    std::string stack_empty;
-    //OtherLinkedList<T> S; // alternative to SNode<T>* top;
-    int n = 0; //number of elements in stack
+    int n = 0; 
 
 public:
     StackLL()
     : top(NULL){};
+    StackLL(const StackLL& s);
     ~StackLL(){
         while (!this->empty()) {
-            SNode<T>* temp = top;
-            top = top->next;
-            temp->next = NULL;
-            delete temp;
+            pop();
         }
     };
     
     bool empty() const;
-    const T &show_top() const; // maybe const T (see Runner::addLapTimes()
-    void print_stack() const; // for custom types
-    void print_stack(bool builtin) const; //for builtin types
+    const T &show_top() const; 
+    void print_stack() const; 
+    void print_stack(bool builtin) const; 
     int size() const;
     void push(T t);
     void pop();
-
-    friend class Runner;
 };
 
+/*------------------- Keeping until last second!!!!------------------------
+template <typename T>
+StackLL<T>::StackLL(const StackLL& copy){
+    top = NULL;
+    SNode<T>* ptr;
+    for (ptr = copy.top; ptr != NULL; ptr->next){
+        push(ptr->data);
+    }
+    n = copy.n;
+}
+*/
+
+//Returns true if stack is empty
 template <typename T> 
 bool StackLL<T>::empty() const { 
-    // return !this->size(); //potentially buggy 
     return top == NULL;
 }
 
+//Pushes a new object to the stack
 template <typename T> 
 void StackLL<T>::push(T t) {
     SNode<T>* node = new SNode<T>;
@@ -65,6 +68,7 @@ void StackLL<T>::push(T t) {
     ++n;
 }
 
+//Pops the top element of the stack
 template <typename T>
 void StackLL<T>::pop() { 
     if (empty()){
@@ -84,6 +88,7 @@ void StackLL<T>::pop() {
     --n;
 }
 
+//Returns the value (data) of the top element of the stack
 template <typename T>
 const T &StackLL<T>::show_top() const { 
     if (empty())
@@ -91,34 +96,31 @@ const T &StackLL<T>::show_top() const {
     return top->data;
 }
 
-//overloaded to allow for built-in functions to use StackLL::print_stack
+//overloaded to allow for built-in object types to use StackLL::print_stack
+//Prints the stack of built-in data types;
 template <typename T>
 void StackLL<T>::print_stack(bool builtin) const{ 
     std::cout << "Start of print_stack()\n";
     SNode<T>* ptr;
     T obj;
     if (builtin){
-        std::cout << "after if(builtin)\n";
         if (empty()) {
             std::cout << "Stack is empty!" << std::endl;
         } else {
-            std::cout << "before for loop: this->top = " << top << std::endl;
             for (ptr = this->top; ptr != NULL; ptr = ptr->next) {
                 obj = ptr->data;
                 std::cout << obj << " | "; //works for classes of built-in types
             }
-            std::cout << "after for loop" << top << std::endl;
-            std::cout << std::endl;
         }
     }
     else{
         std::cout << "Invalid use of StackLL<T>::print_stack().\n";
         std::cout << "Pass either \"true\" to represent printing a stack of built-in types,\n";
-        std::cout << "or pass nothing to represent printing a stack of objects that have a print() function\n";
+        std::cout << "or pass nothing to print the information of an object with a \"print()\" function\n";
     }
-    std::cout << "after for loop" << top << std::endl;
 }
 
+//Only prints information of objects with a "print()" function 
 template <typename T>
 void StackLL<T>::print_stack() const{ 
     SNode<T>* ptr;
@@ -128,12 +130,13 @@ void StackLL<T>::print_stack() const{
     } else {
         for (ptr = top; ptr != NULL; ptr = ptr->next) {
             obj = ptr->data;
-            obj.print();// works for classes with pre-defined print functions
+            obj.print();//calls object's pre-defined print function
         }
         std::cout << std::endl;
     }
 }
 
+//Returns the number of elements in the stack
 template <typename T> 
 int StackLL<T>::size() const {
     return n;

@@ -50,7 +50,7 @@ public:
     void printLaps();
     void setLapTime(float delta); //feed Timer::GetDeltaTime()
     void print() const;
-    float addLapTimes() const;
+    float addLapTimes();
     int numLaps() const;
 };
 
