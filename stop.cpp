@@ -10,31 +10,13 @@ int main (){
     Timer timer; 
     Runner runner("John", 20, 92.2f);
 
-    // std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
-    // std::cout << std::endl;
-    runner.printLaps();
+    singleRunnerStopwatch(timer, runner); 
 
-    singleRunnerStopwatch(timer, runner); //working
-
-    runner.printLaps();//working
-    std::cout << "Number of laps ran: " << runner.numLaps() << std::endl; //working 
-    std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); //testing
+    std::cout << "Your total time for all 3 laps: " << runner.addLapTimes(); 
     std::cout << std::endl;
-    std::cout << "After addLapTimes() called" << std::endl;
-
-    std::cout << "SOME TEXT AFTER ALL THAT STUFF" << std::endl;
 
     runner.printLaps();
 
-    // runner.printLaps();//doesn't work -> pobably because of a problem with runner.laps
-    //being affected by the call of addLapTimes()
-
-    float i = runner.addLapTimes(); // second call is where things go wrong!!!!!!!!!!!!!
-    std::cout << "Your total time for all 3 laps: " << i << std::endl;
-
-    // runner.setBestTime(i);
-    // runner.print();
-    
     std::cout << std::endl;
 
     return 0;

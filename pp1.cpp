@@ -28,8 +28,7 @@ int main() {
     std::string runnerName = "Unknown";
     int runnerAge = 0;
     float runnerGrade = 0.0f;
-    float runnerTime = 0.0f;           // This can be float depending on the value of time
-
+    float runnerTime = 0.0f;
 
     // Temp runner objects needed for print
     Runner temp;
